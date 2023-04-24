@@ -7,15 +7,16 @@ from selenium.webdriver.common.by import By
 
 options = webdriver.ChromeOptions()
 options.add_argument('--disable-blink-features=AutomationControlled')    # 去掉webdriver痕迹
-#options.add_experimental_option("excludeSwiches",["enable-automation","enable-logging"]) #不打印日志
+options.add_experimental_option(
+    'excludeSwitches', ['enable-logging'])    #不打印日志
 s = Service(r"C:\webdrivers\chromedriver.exe")
-wd = webdriver.Chrome(service=s, chrome_options=options)
+wd = webdriver.Chrome(service=s, options=options)
 wd.get("https://www.tsinghuaelt.com/")
-wd.implicitly_wait(5) #隐式等待
+wd.implicitly_wait(5) #隐式等待5s
 
 
 
-def Click(element) :
+def Click(element) :#单击
     sleep(0.005) 
     wd.execute_script("arguments[0].click();",element)
     sleep(0.005)
@@ -48,7 +49,7 @@ def FillBlank() :
     if keys[0] == "Answers will vary." : #开放性答案
         for blank in blanks :
             blank.send_keys("Answers will vary.")
-    else : 
+    else :
         for blank,key in zip(blanks,keys) :
             blank.send_keys(key)
     Re()
@@ -145,12 +146,14 @@ if __name__ == "__main__" :
     while True : 
         if wd.find_elements(By.CSS_SELECTOR, ".wy-course-bottom .wy-course-btn-right .wy-btn") == [] :
             PageNext()    #找不到提交按钮，为单元标题页
+        elif wd.find_elements(By.CSS_SELECTOR, ".lib-oral-container-top") != []:
+            PageNext()    #有录音题直接跳过
         else :
             Re()
-            if  wd.find_elements(By.CSS_SELECTOR, ".lib-fill-blank-do-input-left") !=[]  :
+            if  wd.find_elements(By.CSS_SELECTOR, ".lib-fill-blank-do-input-left") != [] :
                 FillBlank()   #填空题
             elif wd.find_elements(By.CSS_SELECTOR, '.lib-single-item-img img[src="assets/exercise/no-choices.png"]') !=[] :
-                MutiChoice()  #多选题，先判断多选再判断单选
+                MutiChoice()  #多选题
             elif wd.find_elements(By.CSS_SELECTOR, ".lib-single-item-order") != [] :
                 SingleChoice()   #单选题
             elif wd.find_elements(By.CSS_SELECTOR, ".lib-judge-radio") != [] :

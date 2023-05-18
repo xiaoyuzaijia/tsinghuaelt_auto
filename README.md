@@ -18,5 +18,5 @@ cd 该脚本所在目录: 如：cd D:\tsinghuaelt_auto
 
 python  new.py#启动脚本
 
-(2) 进入文件目录，直接打开 new.py 
+(2) 进入文件目录，直接打开 new.py (不推荐!!!!!）
 注： main.py 为初始版本，使用方法同上

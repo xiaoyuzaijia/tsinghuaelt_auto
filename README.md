@@ -14,6 +14,8 @@ update 2023/5/18 by sfindsomething
 新版使用方法：
 (1) cmd命令： 
 cd 该脚本所在目录: 如：cd D:\tsinghuaelt_auto
+
 python  new.py#启动脚本
+
 (2) 进入文件目录，直接打开 new.py 
 注： main.py 为初始版本，使用方法同上

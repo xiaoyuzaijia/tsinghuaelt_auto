@@ -1,11 +1,10 @@
 # tsinghuaelt_auto
  selenium+chrome 清华社英语脚本,现在只支持填空题,选择题,判断题
 
-有录音题直接跳过,部分开放性题目直接跳过,不支持的题目都会跳过 ~~其实也就支持那几种题,其他的题自己动手检查吧~~
+不支持的题目都会跳过
 
 环境安装参考 [原理与安装 | 白月黑羽 (byhy.net)](https://www.byhy.net/tut/auto/selenium/01/#安装)
 
-运行代码,登陆后到做题界面,然后回到终端随便输入什么就开始做题了
 
 
 update 2023/5/18 by sfindsomething

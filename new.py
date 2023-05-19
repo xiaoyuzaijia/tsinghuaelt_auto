@@ -75,26 +75,26 @@ def entry_answer():
     driver.find_element(By.CSS_SELECTOR,'#root > app-index > div > app-course-basic-student > div:nth-child(3) > app-study > div > div.courseContent > div > div:nth-child(1) > div.unitItemOr.unitItem > div:nth-child(2) > div.goalTitle > span > strong').click()
 
 
-def Click(element):  # 单击
+def Click(element):  
+    # js注入单击
     sleep(0.005)
     driver.execute_script("arguments[0].click();", element)
     sleep(0.005)
 
-
-def PageNext():  # 下一页
+def PageNext():
+    # 下一页
     sleep(2.5)
     Click(driver.find_elements(By.CSS_SELECTOR, ".page-next")[1])
     sleep(2.5)
 
-
-def Re():  # 重写或提交
+def Re():  
+    # 重写或提交
     sleep(2)
     Click(driver.find_element(By.CSS_SELECTOR, ".wy-course-bottom .wy-course-btn-right .wy-btn"))
     sleep(2)
 
-
-# 填空题
 def FillBlank():
+    # 填空题
     blanks = driver.find_elements(By.CSS_SELECTOR, ".lib-fill-blank-do-input-left")
     for blank in blanks:
         blank.send_keys("a")
@@ -112,9 +112,8 @@ def FillBlank():
             blank.send_keys(key)
     Re()
 
-
-# 多选题
 def MutiChoice():
+    # 多选题
     choices = driver.find_elements(By.CSS_SELECTOR, '.lib-single-item-img img[src="assets/exercise/no-choices.png"]')
     for choice in choices:
         Click(choice)
@@ -129,9 +128,8 @@ def MutiChoice():
         Click(choices[i])
     Re()
 
-
-# 单选题
 def SingleChoice():
+    # 单选题
     choices = driver.find_elements(By.CSS_SELECTOR, ".lib-single-item-order")
     for choice in choices:
         Click(choice)
@@ -152,8 +150,9 @@ def SingleChoice():
     Re()
 
 
-# 判断题
-def Judge():  # 支持 'T' 'F' 'NI' 三个选项的题
+def Judge():  
+    # 判断题
+    # 支持 'T' 'F' 'NI' 三个选项的题
     choices = driver.find_elements(By.CSS_SELECTOR, ".lib-judge-radio")
     for choice in choices:
         Click(choice)
@@ -174,8 +173,8 @@ def Judge():  # 支持 'T' 'F' 'NI' 三个选项的题
     Re()
 
 
-# 下拉选择题
 def Drop():
+    # 下拉选择题
     choices = driver.find_elements(By.CSS_SELECTOR, ".ant-select-dropdown-menu-item")
     for choice in choices:
         Click(choice)
@@ -207,8 +206,7 @@ def procedure():
             Re()
             if driver.find_elements(By.CSS_SELECTOR, ".lib-fill-blank-do-input-left") != []:
                 FillBlank()  # 填空题
-            elif driver.find_elements(By.CSS_SELECTOR,
-                                      '.lib-single-item-img img[src="assets/exercise/no-choices.png"]') != []:
+            elif driver.find_elements(By.CSS_SELECTOR, '.lib-single-item-img img[src="assets/exercise/no-choices.png"]') != []:
                 MutiChoice()  # 多选题
             elif driver.find_elements(By.CSS_SELECTOR, ".lib-single-item-order") != []:
                 SingleChoice()  # 单选题
